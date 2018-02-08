@@ -132,7 +132,7 @@ function resize () {
 function render (dt) {
   time += Math.min(30, dt) / 1000;
   if (mesh) {
-    mesh.position.y = Math.sin(time) * 0.25 + 1;
+    mesh.position.y = Math.sin(time) * 0.125 + 1;
     mesh.rotation.y += dt * 0.00005;
   }
 
@@ -166,7 +166,7 @@ function setupScene ({ palettes, envMap }) {
   // console.log('Total palettes', palettes.length);
   const geo = geoScene({ palettes, scene, envMap, loop, camera, renderer });
 
-  const initialPalette = [ '#fff', '#e2e2e2' ];
+  const initialPalette = [ '#fff', '#ccc' ];
   geo.setPalette(initialPalette);
   document.body.style.background = '#F9F9F9';
 
@@ -178,7 +178,7 @@ function setupScene ({ palettes, envMap }) {
   let readyForPaletteChange = false;
   let paletteInterval;
 
-  const whitePalette = [ '#fff', '#d3d3d3', '#a5a5a5' ];
+  const whitePalette = [ '#fff', '#d3d3d3', '#000' ];
   const interactions = setupInteractions({ whitePalette, scene, controls, audio, camera, geo });
 
   let hasNextGeometry = false;
@@ -225,7 +225,7 @@ function setupScene ({ palettes, envMap }) {
 
     let firstSwapTimeout = null;
     const onAudioPlaying = () => {
-      const firstSwapDelay = 7721;
+      const firstSwapDelay = 71;
       firstSwapTimeout = setTimeout(() => {
         firstSwap();
         randomPaletteInterval();
@@ -247,7 +247,7 @@ function setupScene ({ palettes, envMap }) {
         geo.nextGeometry();
       }
       randomGeoInterval();
-    }, randomFloat(500, 2000));
+    }, randomFloat(50, 200));
   };
 
   showIntro({ interactions }, () => {
